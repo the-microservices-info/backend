@@ -5,11 +5,16 @@ import * as logger from 'koa-logger';
 import * as json from 'koa-json';
 import * as cors from '@koa/cors';
 
+const corsConfig: any =
+  process.env.NODE_ENV == 'production'
+    ? { origin: 'https://themicroservicesinfo.netlify.app' }
+    : { origin: '*' };
+
 export const app: Koa = new Koa();
 app.use(bodyparser());
 app.use(logger());
 app.use(json());
-app.use(cors());
+app.use(cors(corsConfig));
 
 const router: Router = new Router();
 
