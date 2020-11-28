@@ -1,0 +1,31 @@
+{
+  "name": "the-microservices-info_backend",
+  "repository": "git@github.com:the-microservices-info/backend.git",
+  "author": "João Daniel <jotaf.daniel@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "yarn lint --fix",
+    "format": "prettier --config .prettierrc 'src/**/*' --write"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.11.6",
+    "@types/mongodb": "^3.5.34",
+    "@types/node": "^14.14.10",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "koa": "^2.13.0",
+    "mongodb": "^3.6.3"
+  }
+}
