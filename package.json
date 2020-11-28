@@ -4,6 +4,7 @@
   "author": "João Daniel <jotaf.daniel@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "tsc && node dist/index.js",
     "dev": "nodemon",
     "lint": "eslint . --ext .ts",
     "lint:fix": "yarn lint --fix",

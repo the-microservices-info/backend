@@ -3,8 +3,7 @@ require('dotenv').config();
 
 import { MongoClient } from 'mongodb';
 
-const mongoURL = process.env.MONGO_URL;
-console.log(mongoURL);
+const mongoURL = process.env.MONGO_URL || 'mongo://localhost:27017';
 
 const mongoClient = new MongoClient(mongoURL);
 
