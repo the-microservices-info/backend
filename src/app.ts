@@ -105,4 +105,8 @@ router.post(
   }
 );
 
+router.get('/', (ctx: Koa.Context): void => {
+  ctx.redirect('https://themicroservicesinfo.netlify.app');
+});
+
 app.use(router.routes()).use(router.allowedMethods());
