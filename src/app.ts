@@ -4,43 +4,26 @@ import * as bodyparser from 'koa-bodyparser';
 import * as logger from 'koa-logger';
 import * as json from 'koa-json';
 import * as cors from '@koa/cors';
-import * as jwt from 'jsonwebtoken';
 
 import { validate, ValidationOutput } from './validations';
 
-const secret: string = process.env.APP_SECRET as string;
+const frontURL = process.env.FRONT_URL || 'http://localhost:3030';
 
-if (!secret) {
-  console.error('[!] APP_SECRET undefined! It must be defined!');
-  process.exit(1);
-}
+const corsConfig: any =
+  process.env.NODE_ENV === 'production' ? { origin: frontURL } : { origin: '*' };
 
 export const app: Koa = new Koa();
 app.use(bodyparser());
 app.use(logger());
 app.use(json());
-app.use(cors());
+app.use(cors(corsConfig));
 
 const router: Router = new Router();
-
-app.use(
-  async (ctx: Koa.Context, next: any): Promise<void> => {
-    try {
-      const { token } = ctx.request.body;
-      const payload = jwt.verify(token, secret);
-      ctx.request.body = payload;
-    } catch (e) {
-      ctx.request.body = null;
-      console.dir(e);
-    } finally {
-      await next();
-    }
-  }
-);
 
 router.post(
   '/answers',
   async (ctx: Koa.Context): Promise<void> => {
+    console.log('oi');
     const { isValid, reasons }: ValidationOutput = validate(ctx.request.body);
 
     if (!isValid) {
@@ -56,7 +39,7 @@ router.post(
 );
 
 router.get('/', (ctx: Koa.Context): void => {
-  ctx.redirect('https://themicroservicesinfo.netlify.app');
+  ctx.redirect(frontURL);
 });
 
 app.use(router.routes()).use(router.allowedMethods());
