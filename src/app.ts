@@ -29,12 +29,11 @@ app.use(
       const { token } = ctx.request.body;
       const payload = jwt.verify(token, secret);
       ctx.request.body = payload;
-      await next();
     } catch (e) {
       ctx.request.body = null;
       console.dir(e);
-      ctx.body = { error: 'Invalid payload' };
-      ctx.status = 401;
+    } finally {
+      await next();
     }
   }
 );
