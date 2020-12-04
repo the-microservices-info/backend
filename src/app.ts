@@ -8,6 +8,7 @@ import * as cors from '@koa/cors';
 import { validate, ValidationOutput } from './validations';
 
 const frontURL = process.env.FRONT_URL || 'http://localhost:3030';
+const answersKey = process.env.ANSWERS_KEY;
 
 const corsConfig: any =
   process.env.NODE_ENV === 'production' ? { origin: frontURL } : { origin: '*' };
@@ -41,5 +42,21 @@ router.post(
 router.get('/', (ctx: Koa.Context): void => {
   ctx.redirect(frontURL);
 });
+
+router.get(
+  '/answers',
+  async (ctx: Koa.Context): Promise<void> => {
+    const { key }: any = ctx.query;
+
+    if (key !== answersKey) {
+      ctx.status = 401;
+      return;
+    }
+
+    const answers = await ctx.db.collection('answers').find({}).toArray();
+
+    ctx.body = { answers };
+  }
+);
 
 app.use(router.routes()).use(router.allowedMethods());
