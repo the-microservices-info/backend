@@ -8,16 +8,23 @@
     "dev": "nodemon",
     "lint": "eslint . --ext .ts",
     "lint:fix": "yarn lint --fix",
-    "format": "prettier --config .prettierrc 'src/**/*' --write"
+    "format": "prettier --config .prettierrc 'src/**/*' --write",
+    "test": "jest"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.2.3",
+    "@types/jest": "^26.0.16",
+    "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.6.3",
     "nodemon": "^2.0.6",
     "prettier": "^2.2.1",
+    "supertest": "^6.0.1",
+    "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0"
   },
   "dependencies": {

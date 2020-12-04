@@ -10,21 +10,35 @@ import { validate, ValidationOutput } from './validations';
 const frontURL = process.env.FRONT_URL || 'http://localhost:3030';
 const answersKey = process.env.ANSWERS_KEY;
 
+const patterns: string[] = [
+  'Database per Service',
+  'Saga',
+  'Event Sourcing',
+  'Asynchronous Messaging',
+  'Domain Event',
+  'Transactional Outbox',
+  'API Composition',
+  'Service Registry',
+  'Adapter Microservice',
+  'Ambassador',
+  'CQRS',
+  'Self-Contained Service'
+];
+
 const corsConfig: any =
   process.env.NODE_ENV === 'production' ? { origin: frontURL } : { origin: '*' };
 
 export const app: Koa = new Koa();
 app.use(bodyparser());
-app.use(logger());
 app.use(json());
 app.use(cors(corsConfig));
+if (process.env.NODE_ENV !== 'test') app.use(logger());
 
 const router: Router = new Router();
 
 router.post(
   '/answers',
   async (ctx: Koa.Context): Promise<void> => {
-    console.log('oi');
     const { isValid, reasons }: ValidationOutput = validate(ctx.request.body);
 
     if (!isValid) {
@@ -55,7 +69,9 @@ router.get(
 
     const answers = await ctx.db.collection('answers').find({}).toArray();
 
-    ctx.body = { answers };
+    const sections = patterns.reduce((sections: any, pattern: string): any => {});
+
+    ctx.body = { answers, sections };
   }
 );
 
