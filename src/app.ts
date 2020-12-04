@@ -8,7 +8,6 @@ import * as cors from '@koa/cors';
 import { validate, ValidationOutput } from './validations';
 
 const frontURL = process.env.FRONT_URL || 'http://localhost:3030';
-const answersKey = process.env.ANSWERS_KEY;
 
 const patterns: string[] = [
   'Database per Service',
@@ -62,14 +61,14 @@ router.get(
   async (ctx: Koa.Context): Promise<void> => {
     const { key }: any = ctx.query;
 
-    if (key !== answersKey) {
+    if (key !== ctx.ANSWERS_KEY) {
       ctx.status = 401;
       return;
     }
 
     const answers = await ctx.db.collection('answers').find({}).toArray();
 
-    const sections = patterns.reduce((sections: any, pattern: string): any => {});
+    const sections = {};
 
     ctx.body = { answers, sections };
   }

@@ -14,6 +14,7 @@ async function bootstrap() {
   await mongoClient.connect();
 
   app.context.db = mongoClient.db('themsinfo');
+  app.context.ANSWERS_KEY = process.env.ANSWERS_KEY;
 
   app.listen(port, () => console.log('=== Server Running!\n\n\n'));
 }
