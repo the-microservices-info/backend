@@ -58,9 +58,24 @@ export const validate: (answer: any) => any = (answer: any) => {
     );
   };
 
-  const isKnowledgeSource = () => true;
-  const isBGYear = () => true;
-  const isPatternKnowledgeType = () => true;
+  const isKnowledgeSource = (value: any) =>
+    [
+      'Books, blog posts or written tutorials',
+      'Professional course, workshop or conference tutorial',
+      'A collegue or consultant',
+      'Learned on the job by myself'
+    ].includes(value);
+
+  const isBGYear = (value: any) =>
+    ['0 - 1 year', '1 - 2 years', '2 - 4 years', '4+ years'].includes(value);
+
+  const isPatternKnowledgeType = (value: any) =>
+    [
+      'Yes, I knew as a pattern',
+      "I recognize it as a practice, but I didn't know it was a pattern",
+      "I didn't know"
+    ].includes(value);
+
   const isStatements = () => true;
 
   Validator.register(
