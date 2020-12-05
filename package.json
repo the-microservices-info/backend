@@ -11,7 +11,7 @@
     "format": "prettier --config .prettierrc 'src/**/*' --write",
     "test": "jest",
     "test:watch": "jest --watch --coverage",
-    "test:coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+    "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.2.3",
