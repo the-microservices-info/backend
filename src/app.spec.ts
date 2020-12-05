@@ -56,13 +56,12 @@ describe('answers', () => {
         expect(statusCode).toBe(200);
       });
 
-      xit('returns a list of answers and a hash of sections grouped', async () => {
+      it('returns a list of answers and a hash of patterns grouped', async () => {
         const {
-          body: { answers, sections }
+          body: { answers }
         } = await request(app.callback()).get('/answers').query({ key });
 
         expect(answers).toBeInstanceOf(Array);
-        expect(sections).toBeInstanceOf(Object);
       });
     });
   });

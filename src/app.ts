@@ -9,21 +9,6 @@ import { validate, ValidationOutput } from './validations';
 
 const frontURL = process.env.FRONT_URL || 'http://localhost:3030';
 
-const patterns: string[] = [
-  'Database per Service',
-  'Saga',
-  'Event Sourcing',
-  'Asynchronous Messaging',
-  'Domain Event',
-  'Transactional Outbox',
-  'API Composition',
-  'Service Registry',
-  'Adapter Microservice',
-  'Ambassador',
-  'CQRS',
-  'Self-Contained Service'
-];
-
 const corsConfig: any =
   process.env.NODE_ENV === 'production' ? { origin: frontURL } : { origin: '*' };
 
@@ -68,9 +53,7 @@ router.get(
 
     const answers = await ctx.db.collection('answers').find({}).toArray();
 
-    const sections = {};
-
-    ctx.body = { answers, sections };
+    ctx.body = { answers };
   }
 );
 
