@@ -65,4 +65,17 @@ describe('answers', () => {
       });
     });
   });
+
+  describe('POST /answers', () => {
+    it("fails when the structure isn't correct", async () => {
+      const badAnswer = { introduction: {} };
+      const {
+        statusCode,
+        body: { errors }
+      } = await request(app.callback()).post('/answers').send(badAnswer);
+
+      expect(statusCode).toBe(400);
+      expect(errors.length).toBeGreaterThan(0);
+    });
+  });
 });
