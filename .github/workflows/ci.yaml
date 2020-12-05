@@ -50,3 +50,5 @@ jobs:
       - name: Run tests
         run: yarn test
 
+      - name: Run coverage
+        run: yarn test:coveralls
