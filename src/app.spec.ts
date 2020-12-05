@@ -68,14 +68,29 @@ describe('answers', () => {
 
   describe('POST /answers', () => {
     it("fails when the structure isn't correct", async () => {
-      const badAnswer = { introduction: {} };
+      const data = {};
+
       const {
         statusCode,
         body: { errors }
-      } = await request(app.callback()).post('/answers').send(badAnswer);
+      } = await request(app.callback()).post('/answers').send(data);
+
+      console.log(errors);
 
       expect(statusCode).toBe(400);
-      expect(errors.length).toBeGreaterThan(0);
+      expect(errors).toBeDefined();
+    });
+
+    xit('return 201 when the structure is correct', async () => {
+      const goodAnswer = {
+        introduction: { allowed: true },
+        backgroundExperience: {}
+      };
+      const { statusCode, body } = await request(app.callback()).post('/answers').send(goodAnswer);
+
+      console.log(body);
+
+      expect(statusCode).toBe(201);
     });
   });
 });
