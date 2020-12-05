@@ -33,7 +33,7 @@ router.post(
     const { ops } = await ctx.db.collection('answers').insertOne(ctx.request.body);
 
     ctx.status = 201;
-    ctx.body = { answers: ops };
+    ctx.body = { answers: ops[0] };
   }
 );
 

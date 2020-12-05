@@ -1,6 +1,7 @@
 import * as request from 'supertest';
 import { MongoClient } from 'mongodb';
 import { app } from './app';
+import { patterns } from './validations';
 
 describe('answers', () => {
   let connection: any;
@@ -75,22 +76,35 @@ describe('answers', () => {
         body: { errors }
       } = await request(app.callback()).post('/answers').send(data);
 
-      console.log(errors);
-
       expect(statusCode).toBe(400);
       expect(errors).toBeDefined();
     });
 
-    xit('return 201 when the structure is correct', async () => {
+    it('return 201 when the structure is correct', async () => {
       const goodAnswer = {
         introduction: { allowed: true },
-        backgroundExperience: {}
-      };
-      const { statusCode, body } = await request(app.callback()).post('/answers').send(goodAnswer);
+        backgroundExperience: {
+          knowledgeLevel: 3,
+          knowledgeSource: 'Books, blog posts or written tutorials',
+          years: '1 - 2 years'
+        },
+        personalInformation: { name: '', email: '', available: undefined },
+        ...patterns.reduce((pAns: any, pattern: string): any => {
+          pAns[pattern] = {
+            isUsed: false,
+            knowledgeType: "I didn't know"
+          };
 
-      console.log(body);
+          return pAns;
+        }, {})
+      };
+      const {
+        statusCode,
+        body: { answers }
+      } = await request(app.callback()).post('/answers').send(goodAnswer);
 
       expect(statusCode).toBe(201);
+      expect(answers._id).toBeDefined();
     });
   });
 });
