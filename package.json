@@ -10,8 +10,7 @@
     "lint:fix": "yarn lint --fix",
     "format": "prettier --config .prettierrc 'src/**/*' --write",
     "test": "jest",
-    "test:watch": "jest --watch --coverage",
-    "test:coverage": "jest --coverage"
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.2.3",
