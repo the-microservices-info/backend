@@ -116,5 +116,55 @@ describe(validate, () => {
         });
       });
     });
+
+    describe('for wrong type of pattern.statements', () => {
+      patterns.forEach((pattern: string): void => {
+        test(`${pattern}.statements failing by wrong structure`, () => {
+          copyAnswer[pattern].isUsed = true;
+
+          copyAnswer[pattern].statements = [
+            'The pattern was present in the initial versions of the implementation',
+            'The pattern was implemented via refactoring',
+            'The pattern is implemented in various parts of the system',
+            'The usage of the pattern was beneficial to the system'
+          ];
+
+          const { isValid, reasons } = validate(copyAnswer);
+
+          expect(isValid).toBeFalsy();
+          expect(reasons[`${pattern}.statements`].length).toEqual(1);
+          expect(reasons[`${pattern}.statements`][0]).toMatch('invalid');
+        });
+
+        test(`${pattern}.statements failing by value undefined`, () => {
+          copyAnswer[pattern].isUsed = true;
+
+          copyAnswer[pattern].statements = [
+            {
+              statement: 'The pattern was present in the initial versions of the implementation',
+              value: undefined
+            },
+            {
+              statement: 'The pattern was implemented via refactoring',
+              value: undefined
+            },
+            {
+              statement: 'The pattern is implemented in various parts of the system',
+              value: undefined
+            },
+            {
+              statement: 'The usage of the pattern was beneficial to the system',
+              value: undefined
+            }
+          ];
+
+          const { isValid, reasons } = validate(copyAnswer);
+
+          expect(isValid).toBeFalsy();
+          expect(reasons[`${pattern}.statements`].length).toEqual(1);
+          expect(reasons[`${pattern}.statements`][0]).toMatch('invalid');
+        });
+      });
+    });
   });
 });

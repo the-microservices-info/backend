@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 import { MongoClient } from 'mongodb';
+import * as logger from 'koa-logger';
 
 import { app } from './app';
 
@@ -12,6 +13,8 @@ const mongoClient = new MongoClient(mongoURL);
 
 async function bootstrap() {
   await mongoClient.connect();
+
+  app.use(logger());
 
   app.context.db = mongoClient.db('themsinfo');
   app.context.ANSWERS_KEY = process.env.ANSWERS_KEY;

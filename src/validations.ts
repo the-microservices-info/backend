@@ -76,7 +76,17 @@ export const validate: (answer: any) => any = (answer: any) => {
       "I didn't know"
     ].includes(value);
 
-  const isStatements = () => true;
+  const statements = [
+    'The pattern was present in the initial versions of the implementation',
+    'The pattern was implemented via refactoring',
+    'The pattern is implemented in various parts of the system',
+    'The usage of the pattern was beneficial to the system'
+  ];
+
+  const isStatements = (value: any) =>
+    value.every(
+      (each: any): boolean => statements.includes(each.statement) && each.value !== undefined
+    );
 
   Validator.register(
     'is_answer',
