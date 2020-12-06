@@ -11,6 +11,7 @@
     "format": "prettier --config .prettierrc 'src/**/*' --write",
     "test": "jest",
     "test:watch": "jest --watch --coverage",
+    "test:coverage": "jest --coverage",
     "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info"
   },
   "devDependencies": {
