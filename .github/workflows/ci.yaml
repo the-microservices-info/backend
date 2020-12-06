@@ -47,7 +47,7 @@ jobs:
       - name: Run linter 👀
         run: yarn lint
 
-      - run: yarn test:coveralls
+      - run: yarn test
 
       - name: Coveralls
         uses: coverallsapp/github-action@v1.1.0
