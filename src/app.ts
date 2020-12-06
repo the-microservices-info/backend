@@ -1,21 +1,17 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import * as bodyparser from 'koa-bodyparser';
-import * as logger from 'koa-logger';
 import * as json from 'koa-json';
 import * as cors from '@koa/cors';
 
-import { validate, ValidationOutput } from './validations';
+import { validate } from './validations';
 
 const frontURL = process.env.FRONT_URL || 'http://localhost:3030';
-const answersKey = process.env.ANSWERS_KEY;
 
-const corsConfig: any =
-  process.env.NODE_ENV === 'production' ? { origin: frontURL } : { origin: '*' };
+const corsConfig: any = { origin: frontURL };
 
 export const app: Koa = new Koa();
 app.use(bodyparser());
-app.use(logger());
 app.use(json());
 app.use(cors(corsConfig));
 
@@ -24,8 +20,7 @@ const router: Router = new Router();
 router.post(
   '/answers',
   async (ctx: Koa.Context): Promise<void> => {
-    console.log('oi');
-    const { isValid, reasons }: ValidationOutput = validate(ctx.request.body);
+    const { isValid, reasons }: any = validate(ctx.request.body);
 
     if (!isValid) {
       ctx.body = { errors: reasons };
@@ -35,7 +30,7 @@ router.post(
     const { ops } = await ctx.db.collection('answers').insertOne(ctx.request.body);
 
     ctx.status = 201;
-    ctx.body = { answers: ops };
+    ctx.body = { answers: ops[0] };
   }
 );
 
@@ -48,7 +43,7 @@ router.get(
   async (ctx: Koa.Context): Promise<void> => {
     const { key }: any = ctx.query;
 
-    if (key !== answersKey) {
+    if (key !== ctx.ANSWERS_KEY) {
       ctx.status = 401;
       return;
     }
