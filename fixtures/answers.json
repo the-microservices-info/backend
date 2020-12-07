@@ -1,0 +1,579 @@
+[
+  {
+    "introduction": { "allowed": true },
+    "backgroundExperience": {
+      "knowledgeSource": "A collegue or consultant",
+      "knowledgeLevel": 4,
+      "years": "1 - 2 years"
+    },
+    "personalInformation": {
+      "name": "",
+      "email": ""
+    },
+    "Database per Service": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Saga": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Event Sourcing": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Asynchronous Messaging": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Domain Event": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Transactional Outbox": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "API Composition": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Service Registry": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Adapter Microservice": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Ambassador": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "CQRS": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Self-Contained Service": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    }
+  },
+  {
+    "introduction": { "allowed": true },
+    "backgroundExperience": {
+      "knowledgeSource": "Books, blog posts or written tutorials",
+      "knowledgeLevel": 5,
+      "years": "2 - 4 years"
+    },
+    "personalInformation": {
+      "name": "Some One",
+      "email": "someone@example.com",
+      "available": true
+    },
+    "Database per Service": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Saga": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Event Sourcing": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Asynchronous Messaging": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Domain Event": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Transactional Outbox": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "API Composition": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Service Registry": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Adapter Microservice": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Ambassador": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "CQRS": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    },
+    "Self-Contained Service": {
+      "knowledgeType": "Yes, I knew as a pattern",
+      "isUsed": true,
+      "statements": [
+        {
+          "value": "Strongly agree",
+          "statement": "The pattern was present in the initial version of the implementation"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern was implemented via refactoring"
+        },
+        {
+          "value": "Strongly disagree",
+          "statement": "The pattern is implemented is various parts of the system"
+        },
+        {
+          "value": "Agree",
+          "statement": "The usage of the pattern was beneficial to the system"
+        }
+      ],
+      "comments": ""
+    }
+  }
+]

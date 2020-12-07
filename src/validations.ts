@@ -15,6 +15,13 @@ export const patterns = [
   'Self-Contained Service'
 ];
 
+export const formsSections = [
+  'introduction',
+  'backgroundExperience',
+  'personalInformation',
+  ...patterns
+];
+
 export const validate: (answer: any) => any = (answer: any) => {
   const rules = {
     answer: 'is_answer'
