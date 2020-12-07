@@ -6,7 +6,7 @@ import * as cors from '@koa/cors';
 
 import { validate } from './validations';
 
-const frontURL = process.env.FRONT_URL || 'http://localhost:3030';
+const frontURL = process.env.FRONT_URL || 'http://localhost:3000';
 
 const corsConfig: any = { origin: frontURL };
 
