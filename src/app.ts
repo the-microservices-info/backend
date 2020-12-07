@@ -58,41 +58,42 @@ router.get(
   '/answers/backgroundExperience',
   verifyKey,
   async (ctx: Koa.Context): Promise<void> => {
+    const initialAccumulator = {
+      knowledgeSource: {
+        'Books, blog posts or written tutorials': 0,
+        'Professional course, workshop or conference tutorial': 0,
+        'A collegue or consultant': 0,
+        'Learned on the job by myself': 0
+      },
+      knowledgeLevel: {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0
+      },
+      years: {
+        '0 - 1 year': 0,
+        '1 - 2 years': 0,
+        '2 - 4 years': 0,
+        '4+ years': 0
+      },
+      comments: []
+    };
+
     const answers = await ctx.db.collection('answers').find({}).toArray();
 
     const backgroundExperience = answers
-      .map(({ backgroundExperience }: any): any => backgroundExperience)
-      .reduce(
-        (acc: any, bg: any): any => {
-          Object.keys(bg).forEach((attr: string): void => (acc[attr][bg[attr]] += 1));
-
-          return acc;
-        },
-        {
-          knowledgeSource: {
-            'Books, blog posts or written tutorials': 0,
-            'Professional course, workshop or conference tutorial': 0,
-            'A collegue or consultant': 0,
-            'Learned on the job by myself': 0
-          },
-          knowledgeLevel: {
-            1: 0,
-            2: 0,
-            3: 0,
-            4: 0,
-            5: 0
-          },
-          years: {
-            '0 - 1 year': 0,
-            '1 - 2 years': 0,
-            '2 - 4 years': 0,
-            '4+ years': 0
-          }
-        }
-      );
+      .map((answer: any): any => answer.backgroundExperience)
+      .reduce((acc: any, bgExp: any): any => {
+        acc.knowledgeSource[bgExp.knowledgeSource] += 1;
+        acc.knowledgeLevel[bgExp.knowledgeLevel] += 1;
+        acc.years[bgExp.years] += 1;
+        if (bgExp.comments !== '') acc.comments.push(bgExp.comments);
+        return acc;
+      }, initialAccumulator);
 
     ctx.body = { backgroundExperience };
-    ctx.status = 200;
   }
 );
 

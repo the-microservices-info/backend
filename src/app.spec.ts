@@ -134,7 +134,7 @@ describe('answers', () => {
 
       expect(backgroundExperience).toEqual({
         knowledgeSource: {
-          'Books, blog posts or written tutorials': 1,
+          'Books, blog posts or written tutorials': 0,
           'Professional course, workshop or conference tutorial': 0,
           'A collegue or consultant': 1,
           'Learned on the job by myself': 0
@@ -144,14 +144,15 @@ describe('answers', () => {
           2: 0,
           3: 0,
           4: 1,
-          5: 1
+          5: 0
         },
         years: {
           '0 - 1 year': 0,
-          '1 - 2 years': 1,
+          '1 - 2 years': 0,
           '2 - 4 years': 1,
           '4+ years': 0
-        }
+        },
+        comments: []
       });
     });
   });
