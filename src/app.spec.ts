@@ -1,15 +1,17 @@
 import * as request from 'supertest';
+import * as Fixtures from 'node-mongodb-fixtures';
 import { MongoClient } from 'mongodb';
 import { app } from './app';
 import { patterns } from './validations';
 
 describe('answers', () => {
+  const key = 'test';
   let connection: any;
   let db: any;
   let server: any;
 
   beforeAll(async () => {
-    connection = await MongoClient.connect(process.env.MONGO_URL, {
+    connection = await MongoClient.connect(process.env.MONGO_URL as string, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
@@ -17,9 +19,13 @@ describe('answers', () => {
     db = connection.db();
 
     app.context.db = db;
-    app.context.ANSWERS_KEY = 'test';
+    app.context.ANSWERS_KEY = key;
 
     server = app.listen();
+  });
+
+  beforeEach(async () => {
+    await db.collection('answers').deleteMany({});
   });
 
   afterAll(async () => {
@@ -35,35 +41,39 @@ describe('answers', () => {
     });
   });
 
-  describe('GET /answers', () => {
-    it('blocks without a "key" parameter', async () => {
-      const { statusCode } = await request(app.callback()).get('/answers');
+  describe('key protected GET routes', () => {
+    const protectedGETSubroutes = ['', '/backgroundExperience'];
 
-      expect(statusCode).toBe(401);
-    });
+    protectedGETSubroutes.forEach((subroute: string): void => {
+      const fullRoute = `/answers${subroute}`;
 
-    it('blocks without the right "key" parameter', async () => {
-      const { statusCode } = await request(app.callback()).get('/answers').query({ key: 'foo' });
+      it(`GET ${fullRoute} blocks without a "key" parameter`, async () => {
+        const { statusCode } = await request(app.callback()).get(fullRoute);
 
-      expect(statusCode).toBe(401);
-    });
+        expect(statusCode).toBe(401);
+      });
 
-    describe('when the right key is passed', () => {
-      const key = 'test';
+      it(`GET ${fullRoute} blocks without the right "key" parameter`, async () => {
+        const { statusCode } = await request(app.callback()).get(fullRoute).query({ key: 'foo' });
 
-      it('allows', async () => {
-        const { statusCode } = await request(app.callback()).get('/answers').query({ key });
+        expect(statusCode).toBe(401);
+      });
+
+      it(`GET ${fullRoute} allows`, async () => {
+        const { statusCode } = await request(app.callback()).get(fullRoute).query({ key });
 
         expect(statusCode).toBe(200);
       });
+    });
+  });
 
-      it('returns a list of answers and a hash of patterns grouped', async () => {
-        const {
-          body: { answers }
-        } = await request(app.callback()).get('/answers').query({ key });
+  describe('GET /answers', () => {
+    it('returns a list of answers and a hash of patterns grouped', async () => {
+      const {
+        body: { answers }
+      } = await request(app.callback()).get('/answers').query({ key });
 
-        expect(answers).toBeInstanceOf(Array);
-      });
+      expect(answers).toBeInstanceOf(Array);
     });
   });
 
@@ -105,6 +115,44 @@ describe('answers', () => {
 
       expect(statusCode).toBe(201);
       expect(answers._id).toBeDefined();
+    });
+  });
+
+  describe('GET /answers/backgroundExperience', () => {
+    beforeEach(async () => {
+      const fixtures = new Fixtures({ mute: true });
+      await fixtures.connect(process.env.MONGO_URL as string);
+      await fixtures.unload();
+      await fixtures.load();
+      await fixtures.disconnect();
+    });
+
+    it('returns an aggregation of the backgroundExperience section', async () => {
+      const {
+        body: { backgroundExperience }
+      } = await request(app.callback()).get('/answers/backgroundExperience').query({ key });
+
+      expect(backgroundExperience).toEqual({
+        knowledgeSource: {
+          'Books, blog posts or written tutorials': 1,
+          'Professional course, workshop or conference tutorial': 0,
+          'A collegue or consultant': 1,
+          'Learned on the job by myself': 0
+        },
+        knowledgeLevel: {
+          1: 0,
+          2: 0,
+          3: 0,
+          4: 1,
+          5: 1
+        },
+        years: {
+          '0 - 1 year': 0,
+          '1 - 2 years': 1,
+          '2 - 4 years': 1,
+          '4+ years': 0
+        }
+      });
     });
   });
 });
