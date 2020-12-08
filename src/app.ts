@@ -97,4 +97,78 @@ router.get(
   }
 );
 
+router.get(
+  '/answers/databasePerService',
+  verifyKey,
+  async (ctx: Koa.Context): Promise<void> => {
+    const initialAccumulator = {
+      isUsed: 0,
+      knowledgeType: {
+        'Yes, I knew as a pattern': 0,
+        "I recognize it as a practice, but I didn't know it was a pattern": 0,
+        "I didn't know": 0
+      },
+      statements: [
+        {
+          statement: 'The pattern was present in the initial versions of the implementation',
+          value: {
+            'Strongly disagree': 0,
+            Disagree: 0,
+            Neutral: 0,
+            Agree: 0,
+            'Strongly agree': 0
+          }
+        },
+        {
+          statement: 'The pattern was implemented via refactoring',
+          value: {
+            'Strongly disagree': 0,
+            Disagree: 0,
+            Neutral: 0,
+            Agree: 0,
+            'Strongly agree': 0
+          }
+        },
+        {
+          statement: 'The pattern is implemented in various parts of the system',
+          value: {
+            'Strongly disagree': 0,
+            Disagree: 0,
+            Neutral: 0,
+            Agree: 0,
+            'Strongly agree': 0
+          }
+        },
+        {
+          statement: 'The usage of the pattern was beneficial to the system',
+          value: {
+            'Strongly disagree': 0,
+            Disagree: 0,
+            Neutral: 0,
+            Agree: 0,
+            'Strongly agree': 0
+          }
+        }
+      ],
+      comments: []
+    };
+
+    const answers = await ctx.db.collection('answers').find({}).toArray();
+
+    const databasePerService = answers
+      .map((answer: any): any => answer['Database per Service'])
+      .reduce((acc: any, { isUsed, knowledgeType, statements, comments }: any): any => {
+        acc.isUsed += isUsed;
+        acc.knowledgeType[knowledgeType] += 1;
+        statements?.forEach(
+          ({ value }: any, i: number): void => (acc.statements[i].value[value] += 1)
+        );
+        if (comments !== '') acc.comments.push(comments);
+        return acc;
+      }, initialAccumulator);
+
+    ctx.body = { 'Database per Service': databasePerService };
+  }
+);
+
 app.use(router.routes()).use(router.allowedMethods());
