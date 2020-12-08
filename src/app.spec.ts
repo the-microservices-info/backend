@@ -42,7 +42,7 @@ describe('answers', () => {
   });
 
   describe('key protected GET routes', () => {
-    const protectedGETSubroutes = ['', '/backgroundExperience'];
+    const protectedGETSubroutes = ['', '/backgroundExperience', '/databasePerService'];
 
     protectedGETSubroutes.forEach((subroute: string): void => {
       const fullRoute = `/answers${subroute}`;
@@ -118,7 +118,7 @@ describe('answers', () => {
     });
   });
 
-  describe('GET /answers/backgroundExperience', () => {
+  describe('getting data sections', () => {
     beforeEach(async () => {
       const fixtures = new Fixtures({ mute: true });
       await fixtures.connect(process.env.MONGO_URL as string);
@@ -127,7 +127,7 @@ describe('answers', () => {
       await fixtures.disconnect();
     });
 
-    it('returns an aggregation of the backgroundExperience section', async () => {
+    test('GET /answers/backgroundExperience returns an aggregation of the backgroundExperience section', async () => {
       const {
         body: { backgroundExperience }
       } = await request(app.callback()).get('/answers/backgroundExperience').query({ key });
@@ -152,6 +152,64 @@ describe('answers', () => {
           '2 - 4 years': 1,
           '4+ years': 0
         },
+        comments: []
+      });
+    });
+
+    test('GET /answers/backgroundExperience returns an aggregation of the backgroundExperience section', async () => {
+      const { body } = await request(app.callback())
+        .get('/answers/databasePerService')
+        .query({ key });
+
+      expect(body['Database per Service']).toEqual({
+        isUsed: 0,
+        knowledgeType: {
+          'Yes, I knew as a pattern': 1,
+          "I recognize it as a practice, but I didn't know it was a pattern": 0,
+          "I didn't know": 0
+        },
+        statements: [
+          {
+            statement: 'The pattern was present in the initial versions of the implementation',
+            value: {
+              'Strongly disagree': 0,
+              Disagree: 0,
+              Neutral: 0,
+              Agree: 0,
+              'Strongly agree': 0
+            }
+          },
+          {
+            statement: 'The pattern was implemented via refactoring',
+            value: {
+              'Strongly disagree': 0,
+              Disagree: 0,
+              Neutral: 0,
+              Agree: 0,
+              'Strongly agree': 0
+            }
+          },
+          {
+            statement: 'The pattern is implemented in various parts of the system',
+            value: {
+              'Strongly disagree': 0,
+              Disagree: 0,
+              Neutral: 0,
+              Agree: 0,
+              'Strongly agree': 0
+            }
+          },
+          {
+            statement: 'The usage of the pattern was beneficial to the system',
+            value: {
+              'Strongly disagree': 0,
+              Disagree: 0,
+              Neutral: 0,
+              Agree: 0,
+              'Strongly agree': 0
+            }
+          }
+        ],
         comments: []
       });
     });
