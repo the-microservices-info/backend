@@ -8,7 +8,18 @@ import { validate } from './validations';
 
 const frontURL = process.env.FRONT_URL || 'http://localhost:3000';
 
-const corsConfig: any = { origin: frontURL };
+export function acceptedOrigins(ctx: Koa.Context): string {
+  const requestOrigin = ctx.headers.origin;
+
+  const allowlistRegex = new RegExp(`^${frontURL}(/results.key=\\w+)?$`);
+
+  if (!allowlistRegex.test(requestOrigin))
+    return ctx.throw(`${requestOrigin} is not a valid origin`);
+
+  return requestOrigin;
+}
+
+const corsConfig: any = { origin: acceptedOrigins };
 
 export const app: Koa = new Koa();
 app.use(bodyparser());
