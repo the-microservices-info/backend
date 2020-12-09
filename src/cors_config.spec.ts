@@ -4,9 +4,7 @@ describe('cors config', () => {
   it('should throw an error via ctx when not accepted', () => {
     const origin = 'https://paca.ime.usp.br';
     const ctx = {
-      headers: {
-        origin
-      },
+      get: () => origin,
       throw: jest.fn()
     };
 
@@ -16,11 +14,9 @@ describe('cors config', () => {
   });
 
   it('should return the given origin when accepted', () => {
-    const origin = 'http://localhost:3000/results?key=foo';
+    const origin = 'http://localhost:3000/results';
     const ctx = {
-      headers: {
-        origin
-      },
+      get: () => origin,
       throw: jest.fn()
     };
 
