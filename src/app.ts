@@ -5,10 +5,9 @@ import * as json from 'koa-json';
 import * as cors from '@koa/cors';
 
 import { validate } from './validations';
+import { acceptedOrigins, frontURL } from './cors_config';
 
-const frontURL = process.env.FRONT_URL || 'http://localhost:3000';
-
-const corsConfig: any = { origin: frontURL };
+const corsConfig: any = { origin: acceptedOrigins };
 
 export const app: Koa = new Koa();
 app.use(bodyparser());
