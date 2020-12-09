@@ -1,7 +1,7 @@
 import * as request from 'supertest';
 import * as Fixtures from 'node-mongodb-fixtures';
 import { MongoClient } from 'mongodb';
-import { app } from './app';
+import { app, routedPatterns } from './app';
 import { patterns } from './validations';
 
 describe('answers', () => {
@@ -42,7 +42,11 @@ describe('answers', () => {
   });
 
   describe('key protected GET routes', () => {
-    const protectedGETSubroutes = ['', '/backgroundExperience', '/databasePerService'];
+    const protectedGETSubroutes = [
+      '',
+      '/backgroundExperience',
+      ...routedPatterns.map(({ route }: any): string => '/' + route)
+    ];
 
     protectedGETSubroutes.forEach((subroute: string): void => {
       const fullRoute = `/answers${subroute}`;
@@ -156,61 +160,61 @@ describe('answers', () => {
       });
     });
 
-    test('GET /answers/backgroundExperience returns an aggregation of the backgroundExperience section', async () => {
-      const { body } = await request(app.callback())
-        .get('/answers/databasePerService')
-        .query({ key });
+    routedPatterns.forEach(({ route, name }: any): void => {
+      test(`GET /answers/${route} returns an aggregation of the backgroundExperience section`, async () => {
+        const { body } = await request(app.callback()).get(`/answers/${route}`).query({ key });
 
-      expect(body['Database per Service']).toEqual({
-        isUsed: 0,
-        knowledgeType: {
-          'Yes, I knew as a pattern': 1,
-          "I recognize it as a practice, but I didn't know it was a pattern": 0,
-          "I didn't know": 0
-        },
-        statements: [
-          {
-            statement: 'The pattern was present in the initial versions of the implementation',
-            value: {
-              'Strongly disagree': 0,
-              Disagree: 0,
-              Neutral: 0,
-              Agree: 0,
-              'Strongly agree': 0
-            }
+        expect(body[name]).toEqual({
+          isUsed: 0,
+          knowledgeType: {
+            'Yes, I knew as a pattern': 1,
+            "I recognize it as a practice, but I didn't know it was a pattern": 0,
+            "I didn't know": 0
           },
-          {
-            statement: 'The pattern was implemented via refactoring',
-            value: {
-              'Strongly disagree': 0,
-              Disagree: 0,
-              Neutral: 0,
-              Agree: 0,
-              'Strongly agree': 0
+          statements: [
+            {
+              statement: 'The pattern was present in the initial versions of the implementation',
+              value: {
+                'Strongly disagree': 0,
+                Disagree: 0,
+                Neutral: 0,
+                Agree: 0,
+                'Strongly agree': 0
+              }
+            },
+            {
+              statement: 'The pattern was implemented via refactoring',
+              value: {
+                'Strongly disagree': 0,
+                Disagree: 0,
+                Neutral: 0,
+                Agree: 0,
+                'Strongly agree': 0
+              }
+            },
+            {
+              statement: 'The pattern is implemented in various parts of the system',
+              value: {
+                'Strongly disagree': 0,
+                Disagree: 0,
+                Neutral: 0,
+                Agree: 0,
+                'Strongly agree': 0
+              }
+            },
+            {
+              statement: 'The usage of the pattern was beneficial to the system',
+              value: {
+                'Strongly disagree': 0,
+                Disagree: 0,
+                Neutral: 0,
+                Agree: 0,
+                'Strongly agree': 0
+              }
             }
-          },
-          {
-            statement: 'The pattern is implemented in various parts of the system',
-            value: {
-              'Strongly disagree': 0,
-              Disagree: 0,
-              Neutral: 0,
-              Agree: 0,
-              'Strongly agree': 0
-            }
-          },
-          {
-            statement: 'The usage of the pattern was beneficial to the system',
-            value: {
-              'Strongly disagree': 0,
-              Disagree: 0,
-              Neutral: 0,
-              Agree: 0,
-              'Strongly agree': 0
-            }
-          }
-        ],
-        comments: []
+          ],
+          comments: []
+        });
       });
     });
   });

@@ -97,78 +97,94 @@ router.get(
   }
 );
 
-router.get(
-  '/answers/databasePerService',
-  verifyKey,
-  async (ctx: Koa.Context): Promise<void> => {
-    const initialAccumulator = {
-      isUsed: 0,
-      knowledgeType: {
-        'Yes, I knew as a pattern': 0,
-        "I recognize it as a practice, but I didn't know it was a pattern": 0,
-        "I didn't know": 0
-      },
-      statements: [
-        {
-          statement: 'The pattern was present in the initial versions of the implementation',
-          value: {
-            'Strongly disagree': 0,
-            Disagree: 0,
-            Neutral: 0,
-            Agree: 0,
-            'Strongly agree': 0
-          }
-        },
-        {
-          statement: 'The pattern was implemented via refactoring',
-          value: {
-            'Strongly disagree': 0,
-            Disagree: 0,
-            Neutral: 0,
-            Agree: 0,
-            'Strongly agree': 0
-          }
-        },
-        {
-          statement: 'The pattern is implemented in various parts of the system',
-          value: {
-            'Strongly disagree': 0,
-            Disagree: 0,
-            Neutral: 0,
-            Agree: 0,
-            'Strongly agree': 0
-          }
-        },
-        {
-          statement: 'The usage of the pattern was beneficial to the system',
-          value: {
-            'Strongly disagree': 0,
-            Disagree: 0,
-            Neutral: 0,
-            Agree: 0,
-            'Strongly agree': 0
-          }
-        }
-      ],
-      comments: []
-    };
+export const routedPatterns = [
+  { route: 'databasePerService', name: 'Database per Service' },
+  { route: 'saga', name: 'Saga' },
+  { route: 'eventSourcing', name: 'Event Sourcing' },
+  { route: 'domainEvent', name: 'Domain Event' },
+  { route: 'cqrs', name: 'CQRS' },
+  { route: 'apiComposition', name: 'API Composition' },
+  { route: 'serviceRegistry', name: 'Service Registry' },
+  { route: 'selfContainedService', name: 'Self-Contained Service' },
+  { route: 'asynchronousMessaging', name: 'Asynchronous Messaging' },
+  { route: 'transactionalOutbox', name: 'Transactional Outbox' },
+  { route: 'adapterMicroservice', name: 'Adapter Microservice' },
+  { route: 'ambassador', name: 'Ambassador' }
+];
 
-    const answers = await ctx.db.collection('answers').find({}).toArray();
+routedPatterns.forEach(({ route, name }: any): void => {
+  router.get(
+    `/answers/${route}`,
+    verifyKey,
+    async (ctx: Koa.Context): Promise<void> => {
+      const initialAccumulator = {
+        isUsed: 0,
+        knowledgeType: {
+          'Yes, I knew as a pattern': 0,
+          "I recognize it as a practice, but I didn't know it was a pattern": 0,
+          "I didn't know": 0
+        },
+        statements: [
+          {
+            statement: 'The pattern was present in the initial versions of the implementation',
+            value: {
+              'Strongly disagree': 0,
+              Disagree: 0,
+              Neutral: 0,
+              Agree: 0,
+              'Strongly agree': 0
+            }
+          },
+          {
+            statement: 'The pattern was implemented via refactoring',
+            value: {
+              'Strongly disagree': 0,
+              Disagree: 0,
+              Neutral: 0,
+              Agree: 0,
+              'Strongly agree': 0
+            }
+          },
+          {
+            statement: 'The pattern is implemented in various parts of the system',
+            value: {
+              'Strongly disagree': 0,
+              Disagree: 0,
+              Neutral: 0,
+              Agree: 0,
+              'Strongly agree': 0
+            }
+          },
+          {
+            statement: 'The usage of the pattern was beneficial to the system',
+            value: {
+              'Strongly disagree': 0,
+              Disagree: 0,
+              Neutral: 0,
+              Agree: 0,
+              'Strongly agree': 0
+            }
+          }
+        ],
+        comments: []
+      };
 
-    const databasePerService = answers
-      .map((answer: any): any => answer['Database per Service'])
-      .reduce((acc: any, { isUsed, knowledgeType, statements, comments }: any): any => {
-        acc.isUsed += isUsed;
-        acc.knowledgeType[knowledgeType] += 1;
-        statements?.forEach(
-          ({ value }: any, i: number): void => (acc.statements[i].value[value] += 1)
-        );
-        if (comments !== '') acc.comments.push(comments);
-        return acc;
-      }, initialAccumulator);
+      const answers = await ctx.db.collection('answers').find({}).toArray();
 
-    ctx.body = { 'Database per Service': databasePerService };
-  }
-);
+      ctx.body = {};
+      ctx.body[name] = answers
+        .map((answer: any): any => answer[name])
+        .reduce((acc: any, { isUsed, knowledgeType, statements, comments }: any): any => {
+          acc.isUsed += isUsed;
+          acc.knowledgeType[knowledgeType] += 1;
+          statements?.forEach(
+            ({ value }: any, i: number): void => (acc.statements[i].value[value] += 1)
+          );
+          if (comments !== '') acc.comments.push(comments);
+          return acc;
+        }, initialAccumulator);
+    }
+  );
+});
 
 app.use(router.routes()).use(router.allowedMethods());
