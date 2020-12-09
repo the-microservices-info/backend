@@ -1,4 +1,4 @@
-import { acceptedOrigins } from './app';
+import { acceptedOrigins } from './cors_config';
 
 describe('cors config', () => {
   it('should throw an error via ctx when not accepted', () => {

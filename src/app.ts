@@ -5,19 +5,7 @@ import * as json from 'koa-json';
 import * as cors from '@koa/cors';
 
 import { validate } from './validations';
-
-const frontURL = process.env.FRONT_URL || 'http://localhost:3000';
-
-export function acceptedOrigins(ctx: Koa.Context): string {
-  const requestOrigin = ctx.headers.origin;
-
-  const allowlistRegex = new RegExp(`^${frontURL}(/results.key=\\w+)?$`);
-
-  if (!allowlistRegex.test(requestOrigin))
-    return ctx.throw(`${requestOrigin} is not a valid origin`);
-
-  return requestOrigin;
-}
+import { acceptedOrigins, frontURL } from './cors_config';
 
 const corsConfig: any = { origin: acceptedOrigins };
 
