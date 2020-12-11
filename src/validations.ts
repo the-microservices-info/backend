@@ -9,7 +9,9 @@ export const patterns = [
   'Transactional Outbox',
   'API Composition',
   'Adapter Microservice',
-  'CQRS'
+  'CQRS',
+  'API Gateway',
+  'BFF'
 ];
 
 export const formsSections = [
