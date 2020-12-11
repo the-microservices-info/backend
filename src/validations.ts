@@ -8,11 +8,10 @@ export const patterns = [
   'Domain Event',
   'Transactional Outbox',
   'API Composition',
-  'Service Registry',
   'Adapter Microservice',
-  'Ambassador',
   'CQRS',
-  'Self-Contained Service'
+  'API Gateway',
+  'BFF'
 ];
 
 export const formsSections = [
