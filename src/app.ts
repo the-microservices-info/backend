@@ -100,15 +100,14 @@ export const routedPatterns = [
   { route: 'databasePerService', name: 'Database per Service' },
   { route: 'saga', name: 'Saga' },
   { route: 'eventSourcing', name: 'Event Sourcing' },
-  { route: 'domainEvent', name: 'Domain Event' },
-  { route: 'cqrs', name: 'CQRS' },
-  { route: 'apiComposition', name: 'API Composition' },
-  { route: 'serviceRegistry', name: 'Service Registry' },
-  { route: 'selfContainedService', name: 'Self-Contained Service' },
   { route: 'asynchronousMessaging', name: 'Asynchronous Messaging' },
+  { route: 'domainEvent', name: 'Domain Event' },
   { route: 'transactionalOutbox', name: 'Transactional Outbox' },
-  { route: 'adapterMicroservice', name: 'Adapter Microservice' },
-  { route: 'ambassador', name: 'Ambassador' }
+  { route: 'apiComposition', name: 'API Composition' },
+  { route: 'cqrs', name: 'CQRS' },
+  { route: 'apiGateway', name: 'API Gateway' },
+  { route: 'bff', name: 'BFF' },
+  { route: 'adapterMicroservice', name: 'Adapter Microservice' }
 ];
 
 routedPatterns.forEach(({ route, name }: any): void => {
@@ -116,6 +115,7 @@ routedPatterns.forEach(({ route, name }: any): void => {
     `/answers/${route}`,
     verifyKey,
     async (ctx: Koa.Context): Promise<void> => {
+      console.log(`=== begin ${name}`);
       const initialAccumulator = {
         isUsed: 0,
         knowledgeType: {
@@ -182,6 +182,7 @@ routedPatterns.forEach(({ route, name }: any): void => {
           if (comments !== '') acc.comments.push(comments);
           return acc;
         }, initialAccumulator);
+      console.log(`=== end ${name}`);
     }
   );
 });
