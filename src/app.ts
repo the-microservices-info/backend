@@ -115,7 +115,6 @@ routedPatterns.forEach(({ route, name }: any): void => {
     `/answers/${route}`,
     verifyKey,
     async (ctx: Koa.Context): Promise<void> => {
-      console.log(`=== begin ${name}`);
       const initialAccumulator = {
         isUsed: 0,
         knowledgeType: {
@@ -182,7 +181,6 @@ routedPatterns.forEach(({ route, name }: any): void => {
           if (comments !== '') acc.comments.push(comments);
           return acc;
         }, initialAccumulator);
-      console.log(`=== end ${name}`);
     }
   );
 });
