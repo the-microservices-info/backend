@@ -51,7 +51,17 @@
         "isUsed": false,
         "comments": ""
       },
-      "Service Registry": {
+      "CQRS": {
+        "knowledgeType": "Yes, I knew as a pattern",
+        "isUsed": false,
+        "comments": ""
+      },
+      "API Gateway": {
+        "knowledgeType": "Yes, I knew as a pattern",
+        "isUsed": false,
+        "comments": ""
+      },
+      "BFF": {
         "knowledgeType": "Yes, I knew as a pattern",
         "isUsed": false,
         "comments": ""
@@ -60,21 +70,6 @@
         "knowledgeType": "Yes, I knew as a pattern",
         "isUsed": false,
         "comments": ""
-      },
-      "Ambassador": {
-        "knowledgeType": "Yes, I knew as a pattern",
-        "isUsed": false,
-        "comments": ""
-      },
-      "CQRS": {
-        "knowledgeType": "Yes, I knew as a pattern",
-        "isUsed": false,
-        "comments": ""
-      },
-      "Self-Contained Service": {
-        "knowledgeType": "Yes, I knew as a pattern",
-        "isUsed": false,
-        "comments": ""
       }
-      }
+  }
 ]

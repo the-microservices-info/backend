@@ -161,7 +161,7 @@ describe('answers', () => {
     });
 
     routedPatterns.forEach(({ route, name }: any): void => {
-      test(`GET /answers/${route} returns an aggregation of the backgroundExperience section`, async () => {
+      test(`GET /answers/${route} returns an aggregation of the ${name} section`, async () => {
         const { body } = await request(app.callback()).get(`/answers/${route}`).query({ key });
 
         expect(body[name]).toEqual({

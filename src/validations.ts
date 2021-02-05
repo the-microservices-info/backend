@@ -36,7 +36,7 @@ export const validate: (answer: any) => any = (answer: any) => {
       years: 'required|is_bg_year'
     },
     personalInformation: {
-      name: 'alpha',
+      name: 'string',
       email: 'email',
       available: 'boolean'
     },
