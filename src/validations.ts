@@ -14,12 +14,7 @@ export const patterns = [
   'BFF'
 ];
 
-export const formsSections = [
-  'introduction',
-  'backgroundExperience',
-  'personalInformation',
-  ...patterns
-];
+export const formsSections = ['introduction', 'backgroundExperience', ...patterns];
 
 export const validate: (answer: any) => any = (answer: any) => {
   const rules = {
@@ -35,11 +30,6 @@ export const validate: (answer: any) => any = (answer: any) => {
       knowledgeSource: 'required|is_source',
       years: 'required|is_bg_year'
     },
-    personalInformation: {
-      name: 'string',
-      email: 'email',
-      available: 'boolean'
-    },
     ...patterns.reduce((pValidation: any, pattern: string): any => {
       pValidation[pattern] = {
         isUsed: 'required|boolean',
@@ -52,7 +42,7 @@ export const validate: (answer: any) => any = (answer: any) => {
     }, {})
   };
 
-  const sections = ['introduction', 'backgroundExperience', 'personalInformation', ...patterns];
+  const sections = ['introduction', 'backgroundExperience', ...patterns];
   const allSections = sections.map((s: string): string => `'${s}'`).join(', ');
 
   const hasAllSections = (value: any): boolean => {

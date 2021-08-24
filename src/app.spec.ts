@@ -102,7 +102,6 @@ describe('answers', () => {
           knowledgeSource: 'Books, blog posts or written tutorials',
           years: '1 - 2 years'
         },
-        personalInformation: { name: '', email: '', available: undefined },
         ...patterns.reduce((pAns: any, pattern: string): any => {
           pAns[pattern] = {
             isUsed: false,
